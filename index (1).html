@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sheriff — SMM для ВкусВилла</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700;800&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--soft:#f3f6f4;--card:#fff;--ink:#1a1a1a;--ink2:#5b6560;--line:#e3e9e5;--g:#21a038;--g2:#168a2d;--or:#f26a21;--y:#ffd60a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1511;--soft:#16201a;--card:#18241c;--ink:#f1f6f2;--ink2:#a7b5ac;--line:#263429}}
+:root[data-theme="dark"]{--bg:#0f1511;--soft:#16201a;--card:#18241c;--ink:#f1f6f2;--ink2:#a7b5ac;--line:#263429}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:130px;overflow-x:hidden}
+body{background:var(--bg);color:var(--ink);font-family:Onest,"Segoe UI",sans-serif;line-height:1.55;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+svg{display:block}
+.w{width:min(1120px,100% - 32px);margin:auto}
+.ic{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* шапка */
+header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.top{display:flex;align-items:center;gap:22px;padding:12px 0}
+.logo{font-family:Unbounded;font-weight:900;font-size:21px;color:var(--g);letter-spacing:-.02em;margin-right:auto}
+.top nav{display:flex;gap:22px;font-weight:700;font-size:15px}
+.top nav a:hover{color:var(--g)}.top nav a.hot{color:var(--or)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 28px;border-radius:14px;font-family:Onest;font-weight:800;font-size:16px;background:var(--g);color:#fff;border:2px solid var(--g);cursor:pointer;transition:background .2s,transform .2s}
+.btn:hover{background:var(--g2);border-color:var(--g2);transform:translateY(-2px)}
+.btn.sm{height:42px;padding:0 20px;font-size:15px}
+.btn.wh{background:#fff;color:#1a1a1a;border-color:#fff}.btn.wh:hover{background:#f1f1f1;border-color:#f1f1f1}
+.btn.ol{background:transparent;color:var(--ink);border-color:var(--line)}.btn.ol:hover{background:var(--soft);border-color:var(--g)}
+.btn svg{width:20px;height:20px;flex:none}
+.quest{display:flex;align-items:center;gap:14px;padding:0 0 12px;font-size:13px;font-weight:800;color:var(--ink2)}
+.bar{flex:1;height:10px;border-radius:99px;background:var(--soft);overflow:hidden;border:1px solid var(--line)}
+.bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--g),#6fd16f);transition:width .9s cubic-bezier(.2,.8,.2,1);position:relative;overflow:hidden}
+.bar i::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.6) 50%,transparent 70%);animation:sh 2.2s linear infinite}
+@keyframes sh{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+.xp{color:var(--or);font-family:Unbounded;font-size:12px}
+.quest.full #ql{color:var(--g)}
+/* блобы-главы */
+.chap{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;padding:26px 0 8px}
+.bl{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;font-size:14px;font-weight:700;color:var(--ink2);position:relative}
+.blob{position:relative;width:clamp(78px,12.5vw,118px);aspect-ratio:1;display:block;transition:transform .3s}
+.blob svg.il{width:100%;height:100%;overflow:visible;animation:wob 7s ease-in-out infinite;filter:drop-shadow(0 8px 10px rgba(0,0,0,.12))}
+.bl:hover .blob{transform:scale(1.08) rotate(-4deg)}
+.bl:nth-child(2) .blob{animation-delay:-2s}.bl:nth-child(3) .blob{animation-delay:-4s}.bl:nth-child(4) .blob{animation-delay:-6s}.bl:nth-child(5) .blob{animation-delay:-8s}
+@keyframes wob{50%{transform:rotate(-4deg) scale(1.04)}}
+.bang{position:absolute;top:2px;right:2px;min-width:24px;height:24px;border-radius:50%;background:#e5391a;color:#fff;font-weight:800;font-size:14px;display:grid;place-items:center;box-shadow:0 0 0 3px var(--bg);animation:ping 1.6s ease-in-out infinite}
+.bl.ok .bang{background:var(--g);animation:none}
+@keyframes ping{50%{transform:scale(1.18)}}
+/* баннер */
+.hero{position:relative;overflow:hidden;margin-top:18px;border-radius:40px 40px 40px 12px;background:linear-gradient(135deg,#21a038,#0f7a2a);color:#fff;padding:clamp(30px,6vw,70px);min-height:440px;display:flex;align-items:center}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:#fff;opacity:.09}
+.hero::before{width:520px;height:520px;right:-120px;top:-180px}.hero::after{width:300px;height:300px;right:160px;bottom:-160px}
+.hero h1{font-family:Unbounded;font-weight:900;font-size:clamp(30px,6.2vw,72px);line-height:.98;text-transform:uppercase;letter-spacing:-.03em}
+.hero h1 b{display:inline-block;background:var(--y);color:#1a1a1a;padding:.02em .22em;border-radius:.2em;transform:rotate(-2deg);margin-top:.1em}
+.hero p{margin:22px 0 28px;font-size:clamp(16px,2vw,20px);font-weight:500;max-width:520px;opacity:.95}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero .in{position:relative;z-index:2}
+.tk{position:absolute;z-index:2;right:clamp(16px,6vw,90px);top:50%;transform:translateY(-50%) rotate(-6deg);background:var(--y);color:#1a1a1a;width:clamp(150px,22vw,250px);padding:22px 24px;text-align:center;border-radius:14px;animation:swing 5s ease-in-out infinite}
+.tk::before,.tk::after{content:"";position:absolute;top:50%;width:26px;height:26px;border-radius:50%;background:#12842c;transform:translateY(-50%)}
+.tk::before{left:-13px}.tk::after{right:-13px}
+.tk small{display:block;font-weight:800;font-size:14px}
+.tk b{display:block;font-family:Unbounded;font-weight:900;font-size:clamp(34px,5vw,56px);line-height:1}
+.fan{position:absolute;z-index:3;right:clamp(10px,4vw,60px);bottom:34px;background:#fff;color:#1a1a1a;font-weight:800;padding:12px 20px;border-radius:99px;transform:rotate(-7deg);font-size:15px;animation:swing 6s ease-in-out infinite reverse}
+@keyframes swing{50%{transform:translateY(-50%) rotate(-2deg) translateY(-8px)}}
+.fan{animation-name:swing2}@keyframes swing2{50%{transform:rotate(-3deg) translateY(-6px)}}
+.leaf{position:absolute;z-index:1;width:54px;opacity:.55;animation:fall 14s linear infinite}
+.leaf.a{left:46%;top:-60px}.leaf.b{left:62%;top:-60px;width:36px;animation-delay:-6s}.leaf.c{left:30%;top:-60px;width:44px;animation-delay:-10s}
+@keyframes fall{to{transform:translate(-50px,560px) rotate(300deg)}}
+/* бегущая строка */
+.mq{overflow:hidden;margin:34px 0 0;border-block:1px solid var(--line);padding:16px 0}
+.mq div{display:flex;gap:34px;width:max-content;animation:run 34s linear infinite;font-family:Unbounded;font-weight:800;font-size:20px;text-transform:uppercase;color:var(--ink)}
+.mq span{white-space:nowrap}.mq span::after{content:"●";color:var(--g);margin-left:34px;font-size:12px}
+@keyframes run{to{transform:translateX(-50%)}}
+/* секции */
+section{padding:64px 0 10px}
+.kick{display:inline-block;font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--g);margin-bottom:12px}
+h2{font-family:Unbounded;font-weight:800;font-size:clamp(24px,4.4vw,44px);line-height:1.08;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:14px}
+h2 em{font-style:normal;background:var(--y);color:#1a1a1a;padding:0 .18em;border-radius:.18em;display:inline-block;transform:rotate(-1.5deg)}
+.sub{color:var(--ink2);font-size:18px;max-width:640px;margin-bottom:28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:26px 26px 26px 10px;padding:26px;transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-6px);box-shadow:0 24px 40px -28px var(--g)}
+.ico{width:60px;height:60px;border-radius:58% 42% 55% 45%/48% 56% 44% 52%;display:grid;place-items:center;margin-bottom:16px;background:var(--b);color:#1a1a1a;transition:border-radius .6s}
+.ico svg{width:30px;height:30px}.card:hover .ico{border-radius:44% 56% 42% 58%/58% 44% 56% 42%}
+.card h3{font-family:Unbounded;font-weight:700;font-size:16px;line-height:1.25;margin-bottom:8px;text-transform:uppercase}
+.card p{color:var(--ink2);font-size:16px;flex:1}
+.lk{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-weight:800;color:var(--g);transition:gap .2s}
+.lk:hover{gap:14px}.lk svg{width:16px;height:16px}
+.links{display:flex;flex-wrap:wrap;gap:6px 18px}
+.note{width:100%;font-size:13px;color:var(--ink2);margin-top:2px}
+/* путь */
+.story{background:var(--soft);border-radius:36px 36px 36px 10px;padding:clamp(24px,4vw,48px)}
+.story p{font-size:18px;color:var(--ink2);max-width:820px;margin-bottom:14px}.story p b{color:var(--ink)}
+.path{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:22px 0 26px}
+.nd{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:8px 20px 8px 8px;font-weight:800}
+.nd i{font-style:normal;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--b);color:#1a1a1a;padding:9px}
+.nd small{display:block;font-weight:500;color:var(--ink2);font-size:12px;line-height:1.1}
+.ar{width:26px;height:2px;background:var(--g);border-radius:2px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:22px}
+.stats.fa{margin:6px 0 20px}.stats.fa .st b{font-family:Onest;font-weight:800;font-size:17px;line-height:1.3;color:var(--ink);margin-bottom:6px}
+.tz{background:var(--card);border:1px solid var(--line);border-radius:26px 26px 26px 10px;padding:clamp(22px,3vw,34px);margin-top:24px}
+.tz h3{font-family:Unbounded;font-weight:700;font-size:16px;text-transform:uppercase;margin-bottom:4px}
+.tz .tag{display:inline-block;background:var(--y);color:#1a1a1a;font-weight:800;font-size:12px;border-radius:8px;padding:3px 10px;margin-bottom:12px}
+.tz dl{display:grid;grid-template-columns:150px 1fr;gap:10px 18px;margin-top:14px}
+.tz dt{font-weight:800;color:var(--g)}.tz dd{color:var(--ink2)}
+@media(max-width:620px){.tz dl{grid-template-columns:1fr;gap:2px}.tz dd{margin-bottom:10px}}
+.st{background:var(--card);border-radius:22px;padding:22px;border:1px solid var(--line)}
+.st b{display:block;font-family:Unbounded;font-weight:900;font-size:40px;color:var(--g);line-height:1}
+.st span{color:var(--ink2);font-size:15px}
+.honest{display:flex;gap:14px;background:#fff4d6;color:#4a3b00;border-radius:20px;padding:18px 20px;margin-top:20px;font-weight:500}
+.honest svg{width:26px;height:26px;flex:none;color:var(--or)}
+.idea{border-top:6px solid var(--y)}
+.idea small{font-weight:800;color:var(--or);text-transform:uppercase;letter-spacing:.1em;font-size:12px;margin-bottom:8px}
+.nx{margin-top:26px}
+.end{height:1px}
+/* контакт */
+.fin{position:relative;overflow:hidden;border-radius:40px 40px 12px 40px;background:linear-gradient(135deg,#21a038,#0f7a2a);color:#fff;text-align:center;padding:clamp(36px,6vw,70px) 24px}
+.fin h2{max-width:800px;margin-inline:auto}.fin p{max-width:560px;margin:0 auto 26px;font-size:19px}
+.fin .cta{justify-content:center}
+.fin .tg.won,.btn.won{animation:win 1.4s ease-out 2}
+@keyframes win{0%{box-shadow:0 0 0 0 rgba(255,214,10,.9)}100%{box-shadow:0 0 0 22px rgba(255,214,10,0)}}
+footer{padding:36px 0 56px;text-align:center;color:var(--ink2);font-size:14px}
+.toast{position:fixed;z-index:50;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);opacity:0;background:var(--g);color:#fff;font-weight:800;padding:14px 24px;border-radius:14px;transition:.5s cubic-bezier(.2,.8,.2,1);pointer-events:none;max-width:92vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+#cf{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:60}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
+@media(max-width:820px){.top nav{display:none}.chap{grid-template-columns:repeat(5,minmax(76px,1fr));overflow-x:auto;gap:6px}.hero{min-height:0;padding-bottom:150px;border-radius:30px 30px 30px 10px}.tk{top:auto;bottom:20px;right:16px;transform:rotate(-5deg);width:150px;padding:14px;animation:none}.fan{right:auto;left:16px;bottom:30px;font-size:13px;padding:9px 14px}.quest{font-size:12px}.xp{display:none}}
+@media(max-width:820px){.chap{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:94px;gap:8px;justify-content:start;padding:22px 2px 8px;scroll-snap-type:x proximity;scrollbar-width:none}.chap::-webkit-scrollbar{display:none}.bl{scroll-snap-align:start;font-size:13px}.hero{padding:26px 22px 200px}.hero h1{font-size:clamp(24px,8vw,34px)}.fan{bottom:116px;left:18px;right:auto}.tk{bottom:22px;right:18px}.path{flex-direction:column;align-items:stretch}.ar{display:none}.nd{width:100%}.cta .btn{flex:1 1 100%}.mq div{font-size:15px}.story{border-radius:26px 26px 26px 8px}section{padding-top:48px}h2{font-size:clamp(22px,6.4vw,30px)}.fin{border-radius:30px 30px 8px 30px}.st b{font-size:34px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="route" viewBox="0 0 24 24"><path d="M6 20a2 2 0 100-4 2 2 0 000 4zM18 8a2 2 0 100-4 2 2 0 000 4zM8 18h5a3 3 0 000-6h-2a3 3 0 010-6h5"/></symbol>
+<symbol id="star" viewBox="0 0 24 24"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.800L12 16.300 6.800 19.100l1-5.800L3.500 9.200l5.900-.8z"/></symbol>
+<symbol id="folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></symbol>
+<symbol id="bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 00-4 12.700c.6.500 1 1.200 1 2V17h6v-.300c0-.800.400-1.500 1-2A7 7 0 0012 2z"/></symbol>
+<symbol id="chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 01-11.600 7.100L4 20l1-4.600A8 8 0 1121 12z"/></symbol>
+<symbol id="film" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.500l5 2.500-5 2.500z"/></symbol>
+<symbol id="pen" viewBox="0 0 24 24"><path d="M4 20h4L19 9a2.800 2.800 0 00-4-4L4 16z"/></symbol>
+<symbol id="list" viewBox="0 0 24 24"><path d="M9 11l3 3 8-8M20 12v6a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h9"/></symbol>
+<symbol id="users" viewBox="0 0 24 24"><path d="M16 20v-1a4 4 0 00-4-4H7a4 4 0 00-4 4v1M9.500 11a3.500 3.500 0 100-7 3.500 3.500 0 000 7zM21 20v-1a4 4 0 00-3-3.900M16 4.100a3.500 3.500 0 010 6.800"/></symbol>
+<symbol id="chart" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></symbol>
+<symbol id="tg" viewBox="0 0 24 24"><path d="M21 4L3 11l6 2 2 6 3-4 5 3z"/><path d="M9 13l12-9"/></symbol>
+<symbol id="tt" viewBox="0 0 24 24"><path d="M14 4v10.500a3.500 3.500 0 11-3.500-3.500M14 4c.4 2.400 2 4 4.500 4.200"/></symbol>
+<symbol id="forum" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4zM8 9h8M8 12.500h5"/></symbol>
+<symbol id="arr" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></symbol>
+<symbol id="warn" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.500v.1"/></symbol>
+<symbol id="helper" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></symbol>
+<symbol id="shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.400 8-8 9-4.600-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="crown" viewBox="0 0 24 24"><path d="M3 18l2-10 5 5 2-7 2 7 5-5 2 10zM4 21h16"/></symbol>
+<symbol id="cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></symbol>
+<symbol id="lf" viewBox="0 0 100 130"><path d="M50 2C84 30 98 78 50 126 2 78 16 30 50 2Z" fill="#fff"/></symbol>
+</defs></svg>
+
+<header><div class="w">
+<div class="top"><a class="logo" href="#top">SHERIFF</a>
+<nav><a href="#path">Мой путь</a><a href="#skills">Что умею</a><a href="#works">Работы</a><a href="#ideas">Идеи</a><a class="hot" href="#contact">SMM-вакансия</a></nav>
+<a class="btn sm" href="https://t.me/gdftshdgfhjn" target="_blank" rel="noopener">Написать</a></div>
+<div class="quest" id="quest"><span id="ql">Прочитано 0 из 5</span><span class="bar"><i id="qf"></i></span><span class="xp" id="qx">0 XP</span></div>
+</div></header>
+
+<main class="w" id="top">
+<div class="chap">
+<a class="bl" href="#path" data-ch="path"><span class="blob"><svg class="il" viewBox="0 0 100 100"><path d="M50 6C74 4 94 24 92 50 90 76 70 96 46 94 22 92 6 72 8 46 10 22 28 8 50 6Z" fill="#f9b8f2"/><path d="M22 80C44 76 28 58 52 52S74 36 66 24" fill="none" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 9"/><circle cx="22" cy="80" r="8" fill="#21a038"/><circle cx="22" cy="80" r="3" fill="#fff"/><path d="M66 24V6" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/><path d="M66 6l22 8-22 8z" fill="#f26a21"/><path d="M82 62l2.500 6 6 2.500-6 2.500-2.500 6-2.500-6-6-2.500 6-2.500z" fill="#fff"/></svg><b class="bang">!</b></span>Мой путь</a>
+<a class="bl" href="#skills" data-ch="skills"><span class="blob"><svg class="il" viewBox="0 0 100 100" style="animation-delay:-1.5s"><path d="M44 5C70 2 96 22 93 50 90 80 66 97 40 93 14 89 4 62 8 38 12 16 26 7 44 5Z" fill="#ffd60a"/><g transform="rotate(-14 50 56)"><rect x="12" y="32" width="76" height="48" rx="9" fill="#21a038"/><circle cx="24" cy="44" r="3" fill="#fff" opacity=".4"/><circle cx="78" cy="70" r="3" fill="#fff" opacity=".4"/><text x="50" y="64" text-anchor="middle" font-family="Unbounded,Onest,sans-serif" font-weight="900" font-size="17" fill="#fff">SMM</text></g><path d="M20 10l2.400 5.600 5.600 2.400-5.600 2.400L20 26l-2.400-5.600L12 18l5.600-2.400z" fill="#fff"/><path d="M82 14l1.800 4.200 4.200 1.800-4.200 1.800L82 26l-1.800-4.200L76 20l4.200-1.800z" fill="#fff"/></svg><b class="bang">!</b></span>Что умею</a>
+<a class="bl" href="#works" data-ch="works"><span class="blob"><svg class="il" viewBox="0 0 100 100" style="animation-delay:-3s"><path d="M56 5C80 10 95 30 92 54 89 78 70 94 46 93 22 92 6 74 8 50 10 26 32 0 56 5Z" fill="#6fd16f"/><g transform="rotate(8 50 52)"><rect x="30" y="14" width="42" height="72" rx="10" fill="#1a1a1a"/><rect x="35" y="22" width="32" height="54" rx="5" fill="#fff"/><path d="M45 40l16 9-16 9z" fill="#21a038"/><rect x="40" y="66" width="22" height="4" rx="2" fill="#ffd60a"/></g><path d="M80 24c-3-6-12-4-10 4 1 4 6 8 10 11 4-3 9-7 10-11 2-8-7-10-10-4z" fill="#e5391a"/><circle cx="18" cy="72" r="7" fill="#ffd60a"/></svg><b class="bang">!</b></span>Работы</a>
+<a class="bl" href="#ideas" data-ch="ideas"><span class="blob"><svg class="il" viewBox="0 0 100 100" style="animation-delay:-4.5s"><path d="M38 6C64 -2 92 18 94 46 96 74 76 96 48 94 20 92 4 70 6 44 8 24 22 10 38 6Z" fill="#ffb36b"/><ellipse cx="50" cy="86" rx="30" ry="8" fill="#1f6f8b"/><circle cx="50" cy="44" r="24" fill="#ffd60a"/><path d="M40 62h20l-3 14H43z" fill="#fff"/><rect x="42" y="76" width="16" height="6" rx="3" fill="#1a1a1a"/><path d="M38 36c2-6 7-9 12-9" stroke="#fff" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M44 52l6-8 6 8" stroke="#f26a21" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><g stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"><path d="M50 8v6M20 20l4 4M80 20l-4 4M12 46h6M88 46h-6"/></g></svg><b class="bang">!</b></span>Идеи</a>
+<a class="bl" href="#contact" data-ch="contact"><span class="blob"><svg class="il" viewBox="0 0 100 100" style="animation-delay:-6s"><path d="M52 4C78 6 96 28 92 54 88 80 64 98 40 92 16 86 2 62 8 38 14 14 30 2 52 4Z" fill="#8ec9ff"/><path d="M18 22h54a10 10 0 0110 10v24a10 10 0 01-10 10H44L28 80V66h-10A10 10 0 018 56V32a10 10 0 0110-10z" fill="#fff"/><circle cx="28" cy="44" r="4" fill="#8ec9ff"/><circle cx="43" cy="44" r="4" fill="#8ec9ff"/><circle cx="58" cy="44" r="4" fill="#8ec9ff"/><circle cx="74" cy="72" r="16" fill="#2aabee"/><path d="M64 72l20-8-5 18-5-6z" fill="#fff"/></svg><b class="bang">!</b></span>Контакты</a>
+</div>
+
+<div class="hero">
+<svg class="leaf a"><use href="#lf"/></svg><svg class="leaf b"><use href="#lf"/></svg><svg class="leaf c"><use href="#lf"/></svg>
+<div class="in">
+<h1>Привет,<br>ВкусВилл!<br><b>Я в SMM</b></h1>
+<p>Хочу делать ваш TikTok и Telegram. Давний фанат бренда, слежу за соцсетями, делаю ролики и очень быстро учусь.</p>
+<div class="cta"><a class="btn wh" href="https://t.me/gdftshdgfhjn" target="_blank" rel="noopener"><svg class="ic"><use href="#tg"/></svg>Написать в Telegram</a><a class="btn" style="background:transparent;border-color:#fff" href="#path">Читать с начала</a></div>
+</div>
+<div class="tk"><small>в комьюнити</small><b>5 ЛЕТ</b></div>
+<div class="fan">давний фанат ВкусВилла</div>
+</div>
+
+<div class="mq" aria-hidden="true"><div>
+<span>SMM</span><span>TikTok</span><span>Telegram</span><span>Тренды</span><span>Тексты</span><span>Моушн</span><span>Гипотезы</span><span>Комьюнити</span>
+<span>SMM</span><span>TikTok</span><span>Telegram</span><span>Тренды</span><span>Тексты</span><span>Моушн</span><span>Гипотезы</span><span>Комьюнити</span>
+</div></div>
+
+<section id="path">
+<span class="kick rv">Глава 1</span>
+<h2 class="rv">Где я провёл <em>5 лет</em></h2>
+<div class="story rv">
+<p><b>Игровое комьюнити Majestic RP.</b> Проект сам называет себя одним из крупнейших ролевых проектов по GTA 5, а в обзорах его регулярно ставят в число самых популярных в рунете. С 2021 года я на сервере Seattle: пять лет живу внутри проекта, а не смотрю на него со стороны.</p>
+<div class="stats fa">
+<div class="st"><b>Один из крупнейших RP-проектов GTA 5</b><span>с большой русскоязычной аудиторией</span></div>
+<div class="st"><b>Много серверов и тысячи игроков онлайн</b><span>новые серверы открываются регулярно (недавно Orlando)</span></div>
+<div class="st"><b>Своя команда и свой продукт</b><span>собственные разработчики, обновления, а ещё проект «Россия Онлайн»</span></div>
+<div class="st"><b>Контент держит аудиторию</b><span>ивенты, сезонные обновления, партнёрская программа с блогерами</span></div>
+</div>
+<p>Это живой коммерческий проект, который растёт за счёт контента и ивентов. Я в нём пять лет на практике учился главному в SMM: как привлечь людей, удержать их и сделать так, чтобы они вернулись.</p>
+<div class="path">
+<div class="nd"><i style="--b:#f9b8f2"><svg class="ic"><use href="#helper"/></svg></i><span>Хелпер<small>2021, помогал игрокам</small></span></div><span class="ar"></span>
+<div class="nd"><i style="--b:#ffd60a"><svg class="ic"><use href="#shield"/></svg></i><span>ЗГА<small>за год, заместитель главного админа</small></span></div><span class="ar"></span>
+<div class="nd"><i style="--b:#6fd16f"><svg class="ic"><use href="#crown"/></svg></i><span>Администратор<small>сервер Seattle</small></span></div><span class="ar"></span>
+<div class="nd"><i style="--b:#8ec9ff"><svg class="ic"><use href="#cal"/></svg></i><span>Discord ивентов<small>мини-SMM отдел</small></span></div>
+</div>
+<p>Я руководил Discord ивентов: вёл людей и посты, писал анонсы (ГМП), договаривался с командой. Поэтому знаю аудиторию изнутри: что цепляет, что раздражает и о чём спорят в комментариях.</p>
+<p>Дизайн тоже делаю сам: баннеры и иконки для <b>Grand RP</b> (на самозанятости) и для <b>Majestic</b> (как энтузиаст).</p>
+<div class="stats">
+<div class="st"><b data-n="5" data-s="+">0</b><span>лет в одном комьюнити</span></div>
+<div class="st"><b data-n="1" data-s=" год">0</b><span>от хелпера до заместителя главного админа</span></div>
+<div class="st"><b data-n="2" data-s="">0</b><span>игровых проекта, для которых рисовал дизайн</span></div>
+</div>
+<div class="honest"><svg class="ic"><use href="#warn"/></svg><div>Честно: супер серьёзного опыта в SMM у меня пока не было, и я этого не скрываю. Зато есть пять лет практики с живой аудиторией, привычка быстро разбираться в новом и сильное желание расти и учиться вместе с вашей командой.</div></div>
+</div>
+<div class="nx"><a class="btn ol" href="#skills">Дальше: что умею</a></div>
+<div class="end" data-ch="path"></div>
+</section>
+
+<section id="skills">
+<span class="kick rv">Глава 2</span>
+<h2 class="rv">Что я <em>умею</em></h2>
+<p class="sub rv">Под вашу вакансию, без громких слов.</p>
+<div class="grid">
+<div class="card rv"><span class="ico" style="--b:#f9b8f2"><svg class="ic"><use href="#film"/></svg></span><h3>Видео для TikTok</h3><p>Делаю моушн-ролики: текст, звук, ритм. Понимаю, как удержать внимание в первые секунды.</p></div>
+<div class="card rv"><span class="ico" style="--b:#8ec9ff"><svg class="ic"><use href="#tg"/></svg></span><h3>Telegram с нуля</h3><p>Вёл свой новостной канал: сам искал темы, писал посты и был менеджером.</p></div>
+<div class="card rv"><span class="ico" style="--b:#ffd60a"><svg class="ic"><use href="#pen"/></svg></span><h3>Тексты без штампов</h3><p>Пишу живо, чувствую TOV проекта и подстраиваюсь под редполитику.</p></div>
+<div class="card rv"><span class="ico" style="--b:#6fd16f"><svg class="ic"><use href="#list"/></svg></span><h3>ТЗ для дизайнеров</h3><p>Грамотно расписываю цель, формат, референсы, TOV и критерий результата, чтобы с первого раза получить нужное. Сам рисую в Figma, поэтому понимаю процесс изнутри. Пример ниже в идеях.</p></div>
+<div class="card rv"><span class="ico" style="--b:#ffb36b"><svg class="ic"><use href="#users"/></svg></span><h3>Работа с командой</h3><p>Руководил людьми и постами в Discord ивентов, контролировал сроки и результат.</p></div>
+<div class="card rv"><span class="ico" style="--b:#f9b8f2"><svg class="ic"><use href="#chart"/></svg></span><h3>Тренды и гипотезы</h3><p>Слежу за повесткой, пробую идеи, смотрю на цифры и повторяю то, что сработало.</p></div>
+</div>
+<div class="nx"><a class="btn ol" href="#works">Дальше: работы</a></div>
+<div class="end" data-ch="skills"></div>
+</section>
+
+<section id="works">
+<span class="kick rv">Глава 3</span>
+<h2 class="rv">Мои <em>работы</em></h2>
+<p class="sub rv">Не из штата, но всё сделано самостоятельно.</p>
+<div class="grid">
+<div class="card rv"><span class="ico" style="--b:#0077ff;color:#fff"><svg viewBox="0 0 24 24"><text x="12" y="16" text-anchor="middle" font-family="Unbounded" font-weight="900" font-size="10" fill="#fff">VK</text></svg></span><h3>Свой проект в VK</h3><p>Школьный RP-сервер в Minecraft. Посты, оформление, дизайн: всё сам.</p><a class="lk" href="https://vk.ru/1stvk" target="_blank" rel="noopener">Открыть группу<svg class="ic"><use href="#arr"/></svg></a></div>
+<div class="card rv"><span class="ico" style="--b:#2aabee;color:#fff"><svg class="ic"><use href="#tg"/></svg></span><h3>Telegram-канал с новостями</h3><p>Новости проектов GTA 5 RP. Был менеджером, вёл канал и писал посты сам.</p><a class="lk" href="https://t.me/+yECrOS1eLjplYjBi" target="_blank" rel="noopener">Открыть канал<svg class="ic"><use href="#arr"/></svg></a></div>
+<div class="card rv"><span class="ico" style="--b:#ffd60a"><svg class="ic"><use href="#forum"/></svg></span><h3>ГМП «Seattle концерт»</h3><p>Идея и текст полностью мои. Пост опубликован на форуме проекта.</p><a class="lk" href="https://forum.majestic-rp.ru/threads/seattle-kontsert.2561707/" target="_blank" rel="noopener">Читать на форуме<svg class="ic"><use href="#arr"/></svg></a></div>
+<div class="card rv"><span class="ico" style="--b:#5865f2"><svg viewBox="0 0 24 24"><path fill="#fff" d="M7 6.500C8.600 5.800 10.300 5.500 12 5.500s3.400.3 5 1c1.600 2.300 2.400 4.800 2.600 8-1.200.9-2.500 1.500-3.800 1.900l-.9-1.500c.5-.2 1-.4 1.400-.7-.1-.1-.3-.2-.4-.3-2.600 1.200-5.400 1.200-8 0-.1.100-.3.200-.4.300.4.300.9.500 1.400.7l-.9 1.500c-1.300-.4-2.600-1-3.800-1.900.2-3.200 1-5.700 2.600-8z"/><circle cx="9.500" cy="12" r="1.200" fill="#5865f2"/><circle cx="14.500" cy="12" r="1.200" fill="#5865f2"/></svg></span><h3>Discord ивентов</h3><p>Руководил людьми и постами, писал анонсы. Два примера лежат в канале событий.</p><div class="links"><a class="lk" href="https://discord.com/channels/530693013622489088/670639885685882900/1475497095111770232" target="_blank" rel="noopener">ГМП 1<svg class="ic"><use href="#arr"/></svg></a><a class="lk" href="https://discord.com/channels/530693013622489088/670639885685882900/1472665355565666547" target="_blank" rel="noopener">ГМП 2<svg class="ic"><use href="#arr"/></svg></a><span class="note">Нужно состоять в Discord Majestic</span></div></div>
+<div class="card rv"><span class="ico" style="--b:#f9b8f2"><svg class="ic"><use href="#tt"/></svg></span><h3>Моушн-ролики для TikTok</h3><p>Монтирую под музыку, с текстом и звуком. Примеры покажу в Telegram по запросу.</p><a class="lk" href="https://t.me/gdftshdgfhjn" target="_blank" rel="noopener">Попросить примеры<svg class="ic"><use href="#arr"/></svg></a></div>
+<div class="card rv"><span class="ico" style="--b:#fff;border:1px solid var(--line)"><svg viewBox="0 0 38 57" style="width:22px;height:32px"><path d="M19 28.500a9.500 9.500 0 1 1 19 0 9.500 9.500 0 0 1-19 0z" fill="#1ABCFE"/><path d="M0 47.500A9.500 9.500 0 0 1 9.500 38H19v9.500a9.500 9.500 0 1 1-19 0z" fill="#0ACF83"/><path d="M19 0v19h9.500a9.500 9.500 0 1 0 0-19z" fill="#FF7262"/><path d="M0 9.500A9.500 9.500 0 0 0 9.500 19H19V0H9.500A9.500 9.500 0 0 0 0 9.500z" fill="#F24E1E"/><path d="M0 28.500A9.500 9.500 0 0 0 9.500 38H19V19H9.500A9.500 9.500 0 0 0 0 28.500z" fill="#A259FF"/></svg></span><h3>Портфолио в Figma</h3><p>Баннеры, обложки и иконки под ивенты, собранные в одном файле.</p><a class="lk" href="https://www.figma.com/design/XtVjtAc9kav9iW3pgwy1S5/Majestic-Event?node-id=0-1" target="_blank" rel="noopener">Открыть Figma<svg class="ic"><use href="#arr"/></svg></a></div>
+</div>
+<div class="nx"><a class="btn ol" href="#ideas">Дальше: идеи</a></div>
+<div class="end" data-ch="works"></div>
+</section>
+
+<section id="ideas">
+<span class="kick rv">Глава 4</span>
+<h2 class="rv">Идеи <em>для старта</em></h2>
+<p class="sub rv">Черновики, чтобы показать, как я думаю. С командой доработал бы под редполитику и цифры.</p>
+<div class="grid">
+<div class="card idea rv"><small>TikTok</small><h3>«Что в моей корзине»</h3><p>Короткие ролики: сотрудники или покупатели за 15 секунд показывают любимые продукты.</p></div>
+<div class="card idea rv"><small>Telegram</small><h3>Рубрика по сезону</h3><p>Короткие подборки: что сейчас вкусно и полезно. Без лишних слов и с живым TOV.</p></div>
+<div class="card idea rv"><small>Гипотеза</small><h3>Тест форматов</h3><p>Две недели тестируем три формата, смотрим удержание и вовлечённость, масштабируем лучший.</p></div>
+</div>
+<div class="tz rv"><span class="tag">Пример моего ТЗ</span><h3>Ролик «Что в моей корзине»</h3>
+<dl><dt>Цель</dt><dd>Вовлечённость и сохранения, показать продукты в живом, не рекламном формате.</dd>
+<dt>Формат</dt><dd>TikTok, 9:16, 15–20 секунд, субтитры, музыка из доступной библиотеки.</dd>
+<dt>Сюжет</dt><dd>Человек в магазине показывает три любимых продукта и одну причину взять каждый.</dd>
+<dt>TOV</dt><dd>Просто, тепло, с юмором. Без канцелярита и громких обещаний.</dd>
+<dt>Референсы</dt><dd>2–3 ролика-тренда (ссылки добавляю в задачу).</dd>
+<dt>Метрика</dt><dd>Досмотры, сохранения, комментарии. Тестируем 3 сюжета и масштабируем лучший.</dd>
+<dt>Сроки</dt><dd>Съёмка 1 день, монтаж 2 дня, правки 1 день.</dd></dl></div>
+<div class="nx"><a class="btn ol" href="#contact">Дальше: контакты</a></div>
+<div class="end" data-ch="ideas"></div>
+</section>
+
+<section id="contact">
+<div class="fin rv">
+<span class="kick" style="color:var(--y)">Глава 5</span>
+<h2>Давайте сделаем контент <em>ещё вкуснее</em></h2>
+<p>Готов выполнить тестовое задание и быстро включиться. На связи с 5:30 до 23:00.</p>
+<div class="cta"><a class="btn wh tg" href="https://t.me/gdftshdgfhjn" target="_blank" rel="noopener"><svg class="ic"><use href="#tg"/></svg>Написать в Telegram</a><a class="btn" style="background:transparent;border-color:#fff" href="https://www.figma.com/design/XtVjtAc9kav9iW3pgwy1S5/Majestic-Event?node-id=0-1" target="_blank" rel="noopener">Портфолио</a></div>
+</div>
+<div class="end" data-ch="contact"></div>
+</section>
+</main>
+<footer>© 2026 Sheriff · сайт-визитка для отклика</footer>
+<div class="toast" id="toast"></div><canvas id="cf"></canvas>
+
+<script>
+(function(){
+var rv=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');rv.unobserve(e.target);e.target.querySelectorAll('[data-n]').forEach(cnt);}})},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){rv.observe(el)});
+function cnt(el){var to=+el.dataset.n,s=el.dataset.s||'',t0=performance.now();(function f(t){var p=Math.min(1,(t-t0)/1100);el.textContent=Math.round(to*(1-Math.pow(1-p,3)))+(p===1?s:'');if(p<1)requestAnimationFrame(f)})(t0)}
+var CH=['path','skills','works','ideas','contact'],seen={},n=0,ql=document.getElementById('ql'),qf=document.getElementById('qf'),qx=document.getElementById('qx'),q=document.getElementById('quest'),tt=document.getElementById('toast'),tm;
+function confetti(k,cnt,dur){
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var c=document.getElementById('cf'),x=c.getContext('2d'),W=c.width=innerWidth,H=c.height=innerHeight,cols=['#21a038','#6fd16f','#ffd60a','#f26a21','#f9b8f2','#fff'],P=[];
+for(var i=0;i<cnt;i++){var a=-Math.PI/2+(Math.random()-.5)*1.2,s=(9+Math.random()*9)*k;P.push({x:W/2,y:H,vx:Math.cos(a)*s,vy:Math.sin(a)*s,w:7+Math.random()*7,h:4+Math.random()*4,c:cols[i%6],r:Math.random()*6,vr:(Math.random()-.5)*.3,f:Math.random()*6})}
+var t0=performance.now();(function fr(now){var t=now-t0;x.clearRect(0,0,W,H);P.forEach(function(p){p.vx*=.97;p.vy=p.vy*.97+.28;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.f+=.2;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.scale(1,Math.abs(Math.cos(p.f))+.1);x.globalAlpha=Math.max(0,Math.min(1,(dur-t)/900));x.fillStyle=p.c;x.fillRect(-p.w/2,-p.h/2,p.w,p.h);x.restore()});if(t<dur)requestAnimationFrame(fr);else x.clearRect(0,0,W,H)})(t0)}
+function mark(id){
+if(seen[id])return;seen[id]=1;n++;
+var a=document.querySelector('.bl[data-ch="'+id+'"]');if(a){a.classList.add('ok');a.querySelector('.bang').textContent='\u2713'}
+var all=n===CH.length;qf.style.width=(n/CH.length*100)+'%';qx.textContent=(n*20)+' XP';
+ql.textContent=all?'Все главы пройдены':'Прочитано '+n+' из '+CH.length;q.classList.toggle('full',all);
+tt.textContent=all?'+20 XP · Всё прочитано, спасибо!':'+20 XP · глава '+n+' из '+CH.length;tt.classList.add('show');clearTimeout(tm);tm=setTimeout(function(){tt.classList.remove('show')},2600);
+if(all){confetti(1.4,170,5500);document.querySelectorAll('.tg').forEach(function(b){b.classList.add('won')})}else confetti(.6,50,2200)}
+var eo=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){mark(e.target.dataset.ch);eo.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.end').forEach(function(el){eo.observe(el)});
+})();
+</script>
+</body>
+</html>
